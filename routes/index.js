@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const userRouter = require("./users.js");
-const clothingItem = require("./clothingItems.js");
+const userRouter = require("./users");
+const clothingItem = require("./clothingItems");
 
-const { NOT_FOUND } = require("../utils/errors.js");
+const { NOT_FOUND } = require("../utils/errors");
 
 router.use("/users", userRouter);
 router.use("/items", clothingItem);

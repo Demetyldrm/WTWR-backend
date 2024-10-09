@@ -1,13 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const routes = require("./routes/clothingItems.js");
-const mainRouter = require("./routes/index.js");
+const mainRouter = require("./routes/index");
 
 const app = express();
 const { PORT = 3001 } = process.env;
 
 app.use(express.json());
-app.use(routes);
 
 app.use((req, res, next) => {
   req.user = {
@@ -28,5 +26,4 @@ mongoose
     console.error("Error connecting to the database", error);
   });
 
-app.use("./", routes);
 app.use("/", mainRouter);

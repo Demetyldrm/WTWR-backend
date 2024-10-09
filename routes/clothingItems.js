@@ -8,7 +8,7 @@ const {
   deleteItem,
   likeItem,
   unlikeItem,
-} = require("../controllers/clothingItems.js");
+} = require("../controllers/clothingItems");
 
 router.post("/", createItem);
 
