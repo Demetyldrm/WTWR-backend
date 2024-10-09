@@ -18,7 +18,7 @@ const createItem = async (req, res) => {
     res.status(201).send({ data: item });
   } catch (err) {
     console.error("Error:", err);
-    if (err.name === "InvalidData") {
+    if (err.name === "ValidationError") {
       return res.status(BAD_REQUEST).send({ message: err.message });
     }
     return res
@@ -45,10 +45,10 @@ const deleteItem = (req, res) => {
     .then(() => ClothingItem.deleteOne({ _id: itemId }))
     .then(() => res.status(200).send({ message: "Item deleted successfully" }))
     .catch((err) => {
-      if (err.name === "NonexistentAdress") {
+      if (err.name === "DocumentNotFoundError") {
         return res.status(NOT_FOUND).send({ message: err.message });
       }
-      if (err.name === "InvalidData") {
+      if (err.name === "CastError") {
         return res.status(BAD_REQUEST).send({ message: err.message });
       }
       return res
@@ -69,10 +69,10 @@ const likeItem = (req, res) => {
     .then((item) => res.status(200).send(item))
     .catch((err) => {
       console.error(err);
-      if (err.name === "NonexistentAdress") {
+      if (err.name === "DocumentNotFoundError") {
         return res.status(NOT_FOUND).send({ message: err.message });
       }
-      if (err.name === "InvalidData") {
+      if (err.name === "CastError") {
         return res.status(BAD_REQUEST).send({ message: err.message });
       }
       return res
@@ -91,10 +91,10 @@ const unlikeItem = (req, res) => {
     .then(() => res.status(200).send({ message: "unlike successfully" }))
     .catch((err) => {
       console.error(err);
-      if (err.name === "NonexistentAdress") {
+      if (err.name === "DocumentNotFoundError") {
         return res.status(NOT_FOUND).send({ message: err.message });
       }
-      if (err.name === "InvalidData") {
+      if (err.name === "CastError") {
         return res.status(BAD_REQUEST).send({ message: err.message });
       }
       return res

@@ -1,10 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const routes = require("./routes/clothingItems");
-const mainRouter = require("./routes/index");
-const { PORT = 3001 } = process.env;
+const routes = require("./routes/clothingItems.js");
+const mainRouter = require("./routes/index.js");
 
 const app = express();
+const { PORT = 3001 } = process.env;
 
 app.use(express.json());
 app.use(routes);

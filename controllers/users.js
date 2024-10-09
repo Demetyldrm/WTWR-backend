@@ -1,4 +1,4 @@
-const User = require("../models/user");
+const User = require("../models/user.js");
 
 const {
   BAD_REQUEST,
@@ -22,10 +22,13 @@ const createUser = (req, res) => {
     .then((user) => res.status(201).send(user))
     .catch((err) => {
       console.error(err);
-      if (err.name === "InvalidData") {
+      console.log(err.name);
+      if (err.name === "ValidationError") {
         return res.status(BAD_REQUEST).send({ message: err.message });
       }
-      return res.status(INTERNAL_SERVER_ERROR).send({ message: err.message });
+      return res
+        .status(INTERNAL_SERVER_ERROR)
+        .send({ message: "An Error has occured on the server" });
     });
 };
 
@@ -36,13 +39,15 @@ const getUser = (req, res) => {
     .then((user) => res.status(200).send(user))
     .catch((err) => {
       console.error(err);
-      if (err.name === "NonexistentAdress") {
-        return res.status(NOT_FOUND).send({ message: "User not found" });
+      if (err.name === "DocumentNotFoundError") {
+        return res.status(NOT_FOUND).send({ message: "Invalid data" });
       }
-      if (err.name === "InvalidData") {
+      if (err.name === "CastError") {
         return res.status(BAD_REQUEST).send({ message: "User not found" });
       }
-      return res.status(INTERNAL_SERVER_ERROR).send({ message: err.message });
+      return res
+        .status(INTERNAL_SERVER_ERROR)
+        .send({ message: "Internal Service Error" });
     });
 };
 
