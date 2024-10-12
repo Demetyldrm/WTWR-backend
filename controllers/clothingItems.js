@@ -4,12 +4,12 @@ const {
   BAD_REQUEST,
   INTERNAL_SERVER_ERROR,
   NOT_FOUND,
+  FORBIDDEN,
 } = require("../utils/errors");
 
 const createItem = (req, res) => {
   const owner = req.user._id;
   const { name, weather, imageUrl } = req.body;
-  console.log("Image URL:", imageUrl);
 
   ClothingItem.create({ name, weather, imageUrl, owner })
     .then((item) => res.status(201).send({ data: item }))
@@ -42,8 +42,18 @@ const deleteItem = (req, res) => {
 
   ClothingItem.findById(itemId)
     .orFail()
-    .then(() => ClothingItem.deleteOne({ _id: itemId }))
-    .then(() => res.status(200).send({ message: "Item deleted successfully" }))
+    .then((item) => {
+      if (String(item.owner) !== req.user._id) {
+        return res
+          .status(FORBIDDEN)
+          .send({ message: "Access to the resource is forbidden" });
+      }
+      return item
+        .deleteOne()
+        .then(() =>
+          res.status(200).send({ message: "Item deleted successfully" })
+        );
+    })
     .catch((err) => {
       if (err.name === "DocumentNotFoundError") {
         return res.status(NOT_FOUND).send({ message: err.message });
@@ -73,7 +83,7 @@ const likeItem = (req, res) => {
         return res.status(NOT_FOUND).send({ message: err.message });
       }
       if (err.name === "CastError") {
-        return res.status(BAD_REQUEST).send({ message: "Invalid data" });
+        return res.status(BAD_REQUEST).send({ message: err.message });
       }
       return res
         .status(INTERNAL_SERVER_ERROR)
