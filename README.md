@@ -11,3 +11,5 @@ I used Express and MongoDB to create this back-end project. I used Routes to for
 ### Domain
 
     www.wtwrbydy.crabdance.com
+    wtwrbydy.crabdance.com
+    api.wtwrbydy.crabdance.com
