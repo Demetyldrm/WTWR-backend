@@ -22,7 +22,7 @@ const createUser = (req, res, next) => {
     .then((user) => {
       if (user) {
         const error = new Error("The user already exists");
-        error.statusCode = CONFLICT;
+        error.statusCode = ConflictError;
         throw error;
       }
 
@@ -45,7 +45,7 @@ const createUser = (req, res, next) => {
       if (err.name === "ValidationError") {
         return next(new BadRequestError({ message: err.message }));
       }
-      if (err.statusCode === CONFLICT) {
+      if (err.statusCode === ConflictError) {
         return next(new ConflictError("The user already exists"));
       }
       return next(err);

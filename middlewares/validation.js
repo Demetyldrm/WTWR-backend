@@ -10,7 +10,7 @@ const validateURL = (value, helpers) => {
 
 module.exports.validateCardBody = celebrate({
   body: Joi.object().keys({
-    // weather: Joi.string().valid("hot", "warm", "cold").required(),
+    weather: Joi.string().valid("hot", "warm", "cold").required(),
     name: Joi.string().required().min(2).max(30).messages({
       "string.min": 'The minimum length of the "name" field is 2',
       "string.max": 'The maximum length of the "name" field is 30',
@@ -74,13 +74,9 @@ module.exports.validateUserLogin = celebrate({
 
 module.exports.validateItemId = celebrate({
   params: Joi.object().keys({
-    itemId: Joi.string()
-      .hex()
-      .length(24)
-      .required()
-      .messages({
-        "string.empty": 'The "id" field can not be empty',
-        "string.length": 'The "id" field must have a length of 24',
-      }),
+    itemId: Joi.string().hex().length(24).required().messages({
+      "string.empty": 'The "id" field can not be empty',
+      "string.length": 'The "id" field must have a length of 24',
+    }),
   }),
 });
