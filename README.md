@@ -13,3 +13,14 @@ I used Express and MongoDB to create this back-end project. I used Routes to for
     www.wtwrbydy.crabdance.com
     wtwrbydy.crabdance.com
     api.wtwrbydy.crabdance.com
+
+## SSL Certificate Information
+
+The project uses an SSL certificate issued by Let's Encrypt for secure communication.
+
+### Certificate Details
+
+- **Domain**: wtwrbydy.crabdance.com
+- **Certificate Path**: `/etc/letsencrypt/live/wtwrbydy.crabdance.com/fullchain.pem`
+- **Issuer**: R3 (Let's Encrypt)
+- **Validity**: December 2, 2024 – March 2, 2025
