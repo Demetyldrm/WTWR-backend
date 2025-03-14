@@ -30,3 +30,6 @@ The project uses an SSL certificate issued by Let's Encrypt for secure communica
 - 🔎 Sign in or Sign up using your name,email address, password and Avatar URL
 - 📌 Add clothes entering name and Image URL and choose the weather type using radio buttons.
 - 🌐 Responsive design for mobile and desktop
+<img width="1512" alt="079ACC4E-F49F-4EC4-829E-59C9BC0A67A0" src="https://github.com/user-attachments/assets/0373451e-b02c-4545-a95f-96a658740e3e" />
+<img width="1512" alt="2AD21325-C4B8-4457-88EA-7873BCB9B32C" src="https://github.com/user-attachments/assets/75063f79-8859-4236-8a69-8dfe06610dbd" />
+<img width="1512" alt="86F90695-9F0A-4374-A2CC-7C828BE9CB33" src="https://github.com/user-attachments/assets/792ddf43-0431-4461-9aa4-b59b680a9e93" />
